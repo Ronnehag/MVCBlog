@@ -1,0 +1,84 @@
+﻿@model PostsCategoriesViewModel
+
+@{
+    ViewData["Title"] = "Blog | Home";
+}
+
+
+<!-- BLOG HEADER -->
+<header class="container-fluid text-center p-5" id="main-header">
+    <h1 class="mt-5">Food is life</h1>
+    <h3>Health | Recipes | Training</h3>
+</header>
+
+
+<div class="container mt-4">
+    <div class="row">
+        <section class="col-sm-12 col-md-8 col-lg-8" id="post-section">
+            @foreach (var post in Model.Posts.Take(10))
+            {
+                <div class="row p-2">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">@post.Title</h4>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h6>
+                                            <span class="postTime">@post.PostDate.ToString("MMM dd, yyyy").ToLower()</span>
+                                            | <span class="postedIn ml-1 mr-1">@post.Category.Name</span> |
+                                        </h6>
+                                    </div>
+                                </div>
+                                <p class="card-text mt-3">@post.Text.Substring(0, 100)...</p>
+                                <form asp-action="ViewPost" asp-route-id="@post.PostId">
+                                    <button class="btn btn-sm btn-secondary mt-2">Read more</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </section>
+
+        <aside class="col-sm-12 col-md-4 col-lg-4 p-2" id="recent-posts">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title pt-1 pb-1">Recent posts</h5>
+                    <ul>
+                        @foreach (var post in Model.RecentPosts)
+                        {
+                            <li class="pt-1 pb-1">
+                                <a asp-action="ViewPost" asp-route-id="@post.PostId">
+                                    @post.Title
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                    <h5 class="card-title mt-4 p-1">Archive</h5>
+                    <ul>
+                        @foreach (var val in Model.PostsPerMonth)
+                        {
+                            <li class="pt-1 pb-1">
+                                <a asp-controller="Post" asp-action="Archive" asp-route-date="@val.Date">
+                                    @val.Date (@val.Count)
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                    <h5 class="card-title mt-4 p-1">Categories</h5>
+                    <ul>
+                        @foreach (var category in Model.PostsPerCategory)
+                        {
+                            <li class="pt-1 pb-1">
+                                <a asp-controller="Post" asp-action="ByCategoryName" asp-route-category="@category.CategoryName">
+                                    @category.CategoryName (@category.Count)
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>

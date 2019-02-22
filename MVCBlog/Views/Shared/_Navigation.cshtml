@@ -1,0 +1,25 @@
+﻿
+<!-- SITE NAVIGATION PARTIAL VIEW -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light static-top">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto mr-3">
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Blog" asp-action="Index">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Blog" asp-action="Create">New Post</a>
+            </li>
+            <li>
+                <form class="form-inline" method="get" asp-controller="Post" asp-action="SearchPost">
+                    <input class="form-control mr-sm-2" name="search" type="search" placeholder="headline or category...">
+                    <button type="submit" class="btn btn-sm">
+                        <i class="fas fa-search nav-link"></i>
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
