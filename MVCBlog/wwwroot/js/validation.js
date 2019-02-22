@@ -10,8 +10,8 @@
     const contentInput = document.querySelector("#newPostContent");
     const headlineMaxValue = document.querySelector("#newPostHeadline").maxLength;
     const contentMaxValue = document.querySelector("#newPostContent").maxLength;
-
-    // Maxvalues for the inputfields in the form
+    const headlineMinValue = document.querySelector("#newPostHeadline").minLength;
+    const contentMinValue = document.querySelector("#newPostContent").minLength;
 
 
     // Handles the displaying of max chars for the content
@@ -23,6 +23,12 @@
         } else {
             contentValidationSpan.parentElement.classList.remove("text-red");
         }
+
+        if (totalChars <= contentMinValue) {
+            contentValidationSpan.parentElement.classList.add("text-green");
+        } else {
+            contentValidationSpan.parentElement.classList.remove("text-green");
+        }
     }
 
     // Handles the displaying of max chars for the headline
@@ -31,6 +37,12 @@
         headlineValidationSpan.innerHTML = totalChars;
         if (totalChars >= headlineMaxValue) {
             headlineValidationSpan.parentElement.classList.add("text-red");
+        } else {
+            headlineValidationSpan.parentElement.classList.remove("text-red");
+        }
+        if (totalChars >= headlineMinValue) {
+            headlineValidationSpan.parentElement.classList.add("text-green");
+
         } else {
             headlineValidationSpan.parentElement.classList.remove("text-red");
         }

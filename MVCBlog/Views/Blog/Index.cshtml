@@ -5,16 +5,15 @@
 }
 
 
-<!-- BLOG HEADER -->
-<header class="container-fluid text-center p-5" id="main-header">
-    <h1 class="mt-5">Food is life</h1>
-    <h3>Health | Recipes | Training</h3>
-</header>
 
+<header class="container-fluid text-center margin-top" id="main-header">
+    <h1>My blog title</h1>
+    <h3>Fitness | Health | Life</h3>
+    </header>
 
-<div class="container mt-4">
+<div class="container mt-5">
     <div class="row">
-        <section class="col-sm-12 col-md-8 col-lg-8" id="post-section">
+        <section class="col-12 col-sm-12 col-md-8 col-lg-8" id="post-section">
             @foreach (var post in Model.Posts.Take(10))
             {
                 <div class="row p-2">
@@ -32,7 +31,7 @@
                                 </div>
                                 <p class="card-text mt-3">@post.Text.Substring(0, 100)...</p>
                                 <form asp-action="ViewPost" asp-route-id="@post.PostId">
-                                    <button class="btn btn-sm btn-secondary mt-2">Read more</button>
+                                    <button class="btn btn-sm btn-post mt-2">Read more</button>
                                 </form>
                             </div>
                         </div>

@@ -26,7 +26,7 @@ namespace MVCBlog.ViewModels
 
         private List<PostsPerMonthAndYear> GroupByYearAndMonth(IEnumerable<Post> posts)
         {
-            return posts
+            return posts.OrderByDescending(p => p.PostDate.Year).ThenByDescending(p => p.PostDate.Month)
                 .GroupBy(p => p.PostDate.ToString("MMMM yyyy"))
                 .Select(c => new PostsPerMonthAndYear
                 {

@@ -4,21 +4,24 @@
     ViewData["Title"] = "Post | New Post";
 }
 
-<script src="/js/validation.js" defer></script>
 
 <div class="container mt-5">
     <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-6 mx-auto p-3">
-            <h4 class="text-center">Add new post</h4>
-            <hr />
+        <div class="col-sm-12 col-md-6 col-lg-6 mx-auto p-3 bg-white">
+            <h4 class="text-center mt-2">Add new post</h4>
+            <hr class="mt-4" />
 
             <form asp-action="Create" method="post">
-                <div asp-validation-summary="All"></div>
                 <div class="form-group">
                     <label asp-for="@Model.Post.Title"></label>
-                    <input maxlength="50" class="form-control" type="text" id="newPostHeadline" asp-for="@Model.Post.Title"/>
-                    <div class="text-right validation-tag">
-                        <span id="maxcharsHeadline">0</span>/50
+                    <input minlength="5" maxlength="50" class="form-control" type="text" id="newPostHeadline" asp-for="@Model.Post.Title" />
+                    <div class="row">
+                        <div class="col-6 mr-auto text-left">
+                            <small><span asp-validation-for="Post.Title"></span></small>
+                        </div>
+                        <div class="col-6 ml-auto text-right validation-tag">
+                            <span id="maxcharsHeadline">0</span>/50
+                        </div>
                     </div>
                 </div>
 
@@ -28,17 +31,28 @@
                             asp-items="@(new SelectList(Model.Categories, "CategoryId", "Name"))">
                         <option value="0">Please select one</option>
                     </select>
+                    <small><span asp-validation-for="Post.CategoryId"></span></small>
                 </div>
 
                 <div class="form-group">
                     <label asp-for="@Model.Post.Text"></label>
-                    <textarea maxlength="2000" class="form-control" rows="10" type="text" id="newPostContent" asp-for="@Model.Post.Text"></textarea>
-                    <div class="text-right validation-tag">
-                        <span id="maxcharsTextarea">0</span>/2000
+                    <textarea minlength="50" maxlength="2000" class="form-control" rows="10" type="text" id="newPostContent" asp-for="@Model.Post.Text"></textarea>
+                    <div class="row">
+                        <div class="col-6 text-left mr-auto">
+                            <small><span asp-validation-for="Post.Text"></span></small>
+                        </div>
+                        <div class="col-6 ml-auto text-right validation-tag">
+                            <span id="maxcharsTextarea">0</span>/2000
+                        </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-post">Submit</button>
+                </div>
             </form>
         </div>
     </div>
 </div>
+
+
+<script src="/js/validation.js" defer></script>
