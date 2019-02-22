@@ -5,21 +5,22 @@
 
 <div class="container mt-5">
     <div class="row">
-        <div class="col-12 col-sm-12 mx-auto col-md-6 col-sm-6 bg-white padding">
-
+        <div class="col-sm-12 mx-auto col-md-6 col-lg-6 bg-white">
             <div class="text-center mt-4">
-                <h1>@Model.Title</h1>
-                <h6 class="mt-2">
-                    <span class="postTime">@Model.PostDate.ToString("MMM dd, yyyy").ToLower()</span>
-                    | <span class="postedIn ml-1 mr-1">@Model.Category.Name</span> |
-                </h6>
-            </div>
-            <hr />
-            <p>@Model.Text</p>
-            <div class="mt-4 mb-4 text-center">
-                <a asp-controller="Blog" asp-action="Index">
-                    <span class="btn btn-sm btn-post">Back</span>
-                </a>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            @Model.Title<br />
+                        </h4>
+                        <span class="postTime">@Model.PostDate.ToString("MMM dd, yyyy").ToLower()</span> | <span class="postedIn ml-1 mr-1">@Model.Category.Name</span> |
+                        <p class="card-text mt-4">@Model.Text</p>
+                    </div>
+                </div>
+                <div class="mt-4 mb-4 text-center">
+                    <a asp-controller="Blog" asp-action="Index">
+                        <span class="btn btn-sm btn-post">Back</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

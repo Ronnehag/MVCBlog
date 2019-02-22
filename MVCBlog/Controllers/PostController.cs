@@ -43,6 +43,7 @@ namespace MVCBlog.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Category(int id)
         {
             var model = new PostsCategoriesViewModel(_context)

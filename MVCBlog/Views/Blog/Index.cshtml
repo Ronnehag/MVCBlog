@@ -13,7 +13,7 @@
 
 <div class="container mt-5">
     <div class="row">
-        <section class="col-12 col-sm-12 col-md-8 col-lg-8" id="post-section">
+        <section class="col-12 col-sm-12 col-md-8 col-lg-8 ml-auto" id="post-section">
             @foreach (var post in Model.Posts.Take(10))
             {
                 <div class="row p-2">
@@ -40,7 +40,7 @@
             }
         </section>
 
-        <aside class="col-sm-12 col-md-4 col-lg-4 p-2" id="recent-posts">
+        <aside class="col-6 col-sm-12 col-md-3 col-lg-3 p-2 mx-auto" id="recent-posts">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title pt-1 pb-1">Recent posts</h5>
