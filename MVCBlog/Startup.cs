@@ -29,9 +29,6 @@ namespace MVCBlog
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-
-
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -41,16 +38,6 @@ namespace MVCBlog
 
             app.UseMvc(route =>
             {
-                route.MapRoute(
-                    name: "Archive",
-                    template: "{Controller=Post}/{Action=Archive}/{date}"
-                );
-
-                route.MapRoute(
-                    name: "Post",
-                    template: "{Controller=Blog}/{Action=ViewPost}/{id}"
-                );
-
                 route.MapRoute(
                     name: "Default",
                     template: "{Controller=Blog}/{Action=Index}"
