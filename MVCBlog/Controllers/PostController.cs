@@ -20,7 +20,8 @@ namespace MVCBlog.Controllers
         {
             var model = new PostsCategoriesViewModel(_context)
             {
-                Posts = _context.Post.Where(p => p.PostDate.ToString("MMMM yyyy") == date)
+                Posts = _context.Post
+                    .Where(p => p.PostDate.ToString("MMMM yyyy") == date)
                     .OrderByDescending(p => p.PostDate)
                     .ToList()
             };
@@ -32,7 +33,8 @@ namespace MVCBlog.Controllers
         {
             var model = new PostsCategoriesViewModel(_context)
             {
-                Posts = _context.Post.Include("Category")
+                Posts = _context.Post
+                    .Include("Category")
                     .Where(p => string.Equals(p.Category.Name, category, StringComparison.CurrentCultureIgnoreCase))
                     .OrderByDescending(p => p.PostDate)
                     .ToList()
@@ -54,7 +56,8 @@ namespace MVCBlog.Controllers
         {
             var model = new PostsCategoriesViewModel(_context)
             {
-                Posts = _context.Post.Include("Category")
+                Posts = _context.Post
+                    .Include("Category")
                     .Where(p => p.Title.Contains(search) || p.Category.Name.Contains(search))
                     .ToList()
             };

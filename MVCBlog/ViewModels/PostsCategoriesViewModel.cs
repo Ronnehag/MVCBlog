@@ -14,6 +14,16 @@ namespace MVCBlog.ViewModels
         public List<PostsPerCategory> PostsPerCategory { get; set; }
 
 
+        public PostsCategoriesViewModel(BlogContext context)
+        {
+            var posts = context.Post.Include("Category");
+            Categories = context.Category.ToList();
+            RecentPosts = posts.OrderByDescending(p => p.PostDate).Take(5).ToList();
+            PostsPerMonth = GroupByYearAndMonth(posts);
+            PostsPerCategory = GroupByCategory(posts);
+        }
+
+
         private List<PostsPerCategory> GroupByCategory(IEnumerable<Post> posts)
         {
             return posts.GroupBy(p => p.Category.Name)
@@ -26,22 +36,15 @@ namespace MVCBlog.ViewModels
 
         private List<PostsPerMonthAndYear> GroupByYearAndMonth(IEnumerable<Post> posts)
         {
-            return posts.OrderByDescending(p => p.PostDate.Year).ThenByDescending(p => p.PostDate.Month)
+            return posts
+                .OrderByDescending(p => p.PostDate.Year)
+                .ThenByDescending(p => p.PostDate.Month)
                 .GroupBy(p => p.PostDate.ToString("MMMM yyyy"))
                 .Select(c => new PostsPerMonthAndYear
                 {
                     Date = c.Key,
                     Count = c.Count()
                 }).ToList();
-        }
-
-        public PostsCategoriesViewModel(BlogContext context)
-        {
-            var posts = context.Post.Include("Category");
-            Categories = context.Category.ToList();
-            RecentPosts = context.Post.OrderByDescending(p => p.PostDate).Take(5).ToList();
-            PostsPerMonth = GroupByYearAndMonth(posts);
-            PostsPerCategory = GroupByCategory(posts);
         }
 
     }
