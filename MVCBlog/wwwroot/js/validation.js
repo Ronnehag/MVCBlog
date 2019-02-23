@@ -1,7 +1,7 @@
 ﻿
 
 // Validation for the create new post form
-(function validationCreateNewPost() {
+(function () {
 
     // DOM ELEMENTS
     const headlineValidationSpan = document.querySelector("#maxcharsHeadline");
@@ -23,12 +23,6 @@
         } else {
             contentValidationSpan.parentElement.classList.remove("text-red");
         }
-
-        if (totalChars >= contentMinValue && totalChars < contentMaxValue) {
-            contentValidationSpan.parentElement.classList.add("text-green");
-        } else {
-            contentValidationSpan.parentElement.classList.remove("text-green");
-        }
     }
 
     // Handles the displaying of max chars for the headline
@@ -40,12 +34,6 @@
             headlineValidationSpan.parentElement.classList.add("text-red");
         } else {
             headlineValidationSpan.parentElement.classList.remove("text-red");
-        }
-
-        if (totalChars >= headlineMinValue && totalChars < headlineMaxValue) {
-            headlineValidationSpan.parentElement.classList.add("text-green");
-        } else {
-            headlineValidationSpan.parentElement.classList.remove("text-green");
         }
     }
     // Adding eventlisteners to the input fields

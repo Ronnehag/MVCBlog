@@ -105,9 +105,6 @@ nav i {
         color: #00ced1;
         transform: scale(1.1);
     }
-#main-footer i:not(last-child) {
-    margin-right: 22px;
-}
 .uppercase {
     text-transform: uppercase;
 }
@@ -242,7 +239,6 @@ input[type="search"] {
     color: #00ced1;
 }
 
-
 .form-control:focus, input[type="search"]:focus {
     border-color: #00ced1;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #00ced1;
@@ -265,5 +261,22 @@ input[type="search"] {
     }
     #recent-posts {
         text-align: center;
+    }
+    #main-footer h4 {
+        font-size: 25px;
+    }
+    #main-footer li {
+        margin-right: 10px !important;
+    }
+    ul#social-list {
+        margin: 0;
+        padding: 0;
+    }
+    #social-list i {
+        font-size: 36px;
+        margin: 0 !important;
+    }
+    #main-footer hr{
+        width: 100%;
     }
 }
