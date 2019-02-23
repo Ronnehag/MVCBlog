@@ -16,6 +16,7 @@ namespace MVCBlog.Controllers
             _context = context;
         }
 
+
         public IActionResult Index()
         {
             var model = new PostsCategoriesViewModel(_context)
@@ -25,16 +26,15 @@ namespace MVCBlog.Controllers
             return View(model);
         }
 
-        [HttpGet]
+        [Route("Blog/NewPost")]
         public IActionResult Create()
         {
-            var mod = new CreateBlogViewModel();
-            mod.Categories = _context.Category;
+            var mod = new CreateBlogViewModel {Categories = _context.Category};
 
             return View(mod);
         }
 
-        [HttpPost]
+        [HttpPost("Blog/NewPost")]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Post post)
         {
@@ -44,19 +44,11 @@ namespace MVCBlog.Controllers
                 _context.Add(post);
                 _context.SaveChanges();
                 ModelState.Clear();
-                return Redirect("Index");
+                return RedirectToAction("Index");
             }
             var model = new CreateBlogViewModel(
                 _context.Category.AsEnumerable(), new PostMetaData());
 
-            return View(model);
-        }
-
-        public IActionResult ViewPost(int id)
-        {
-            var model = _context.Post
-                .Include("Category")
-                .FirstOrDefault(p => p.PostId == id);
             return View(model);
         }
     }

@@ -16,6 +16,7 @@ namespace MVCBlog.Controllers
             _context = context;
         }
 
+        [Route("Post/Archive/{date}")]
         public IActionResult Archive(string date)
         {
             var model = new PostsCategoriesViewModel(_context)
@@ -29,6 +30,7 @@ namespace MVCBlog.Controllers
             return View("../Blog/Index", model);
         }
 
+        [Route("Post/Category/{category}")]
         public IActionResult ByCategoryName(string category)
         {
             var model = new PostsCategoriesViewModel(_context)
@@ -63,6 +65,15 @@ namespace MVCBlog.Controllers
                     .ToList()
             };
             return View("../Blog/Index", model);
+        }
+
+        [Route("Post/ViewPost/{id}")]
+        public IActionResult ViewPost(int id)
+        {
+            var model = _context.Post
+                .Include("Category")
+                .FirstOrDefault(p => p.PostId == id);
+            return View(model);
         }
 
 

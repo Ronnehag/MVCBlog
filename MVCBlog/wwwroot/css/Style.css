@@ -150,7 +150,7 @@ nav i {
 
 .btn-post {
     background: #fff;
-    color: #778899;
+    color: #778899 !important;
     border: 1px solid #a9a9a9;
     transition: all .2s ease-in-out;
 }
@@ -216,7 +216,12 @@ btn-search {
     color: #00ced1;
     border: 1px solid #00ced1;
 }
-
+.text-black {
+    color: black;
+}
+#create-post small {
+    color: black;
+}
 
 .navbar-toggler {
     margin-top: 10px;
@@ -249,5 +254,16 @@ input[type="search"] {
 @media only screen and (max-width: 667px) {
     .nav-link:before {
         width: 20%;
+    }
+    .btn-search {
+        margin-left: 8px;
+        margin-bottom: 0;
+        margin-top: 0 !important;
+    }
+    input[type="search"] {
+        max-width: 250px;
+    }
+    #recent-posts {
+        text-align: center;
     }
 }

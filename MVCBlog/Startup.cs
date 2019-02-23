@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,8 @@ namespace MVCBlog
             services.AddMvc();
             services.AddDbContext<BlogContext>(options 
                 => options.UseSqlServer(Configuration["Data:Blog:ConnectionString"]));
+
+            services.Configure<RouteOptions>(options => options.AppendTrailingSlash = true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
